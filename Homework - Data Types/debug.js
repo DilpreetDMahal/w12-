@@ -13,13 +13,16 @@ const customerName = "alex rivera";
 const cleanName    = customerName.trim().toLowerCase();
 
 // Trying to capitalise the first letter:
-const titled = cleanname[0].toUpperCase() + cleanname.slice(1);
+const titled = cleanName[0].toUpperCase() + cleanName.slice(1);
 console.log(`Hello, ${titled}!`);
 
 // What's wrong ↓
+// const titled = cleanname[0].toUpperCase() + cleanname.slice(1);
+// variable name is wrong
 
 // Your fix ↓
 
+//const titled = cleanName[0].toUpperCase() + cleanName.slice(1);
 
 // ----------------------------------------------------------
 // 🟡 DEBUG 2 — Medium
@@ -31,14 +34,18 @@ const itemPrice = "79.99";  // from a form input
 const itemQty   = 2;
 
 const lineTotal = itemPrice * itemQty;  // works — * coerces
-const receipt   = `Total: $${itemPrice + lineTotal}`; // bug here
+const receipt   = `Total: $${parseFloat(itemPrice) + lineTotal}`; // bug here
 
 console.log(receipt); // "Total: $79.99159.98" — wrong
 
 // What's wrong ↓
 
+// const receipt   = `Total: $${itemPrice + lineTotal}`; // bug here
+
+//itemPrice is a string
 // Your fix ↓
 
+//const receipt   = `Total: $${parseFloat(itemPrice) + lineTotal}`; 
 
 // ----------------------------------------------------------
 // 🔴 DEBUG 3 — Hard
@@ -50,16 +57,21 @@ console.log(receipt); // "Total: $79.99159.98" — wrong
 const rawCode     = "  save10  ";
 const validCode   = "SAVE10";
 
+const cleanCode = rawCode.trim().toUpperCase();
+
 // Bug 1: comparing without cleaning
-const isValid = rawCode === validCode;
+const isValid = cleanCode === validCode;
 console.log(`Code valid: ${isValid}`);  // false — wrong, should be true
 
 // Bug 2: building a label with the raw code
-const label = `Discount code: ${rawCode} — valid: ${isValid}`;
+const label = `Discount code: ${cleanCode} — valid: ${isValid}`;
 console.log(label); // shows messy whitespace in the label
 
 // Bug 1 ↓
-
-// Bug 2 ↓
-
+// const isValid = rawCode === validCode;
+// const label = `Discount code: ${rawCode} — valid: ${isValid}`;
 // Your fix for both ↓
+
+// const cleanCode = rawCode.trim().toUpperCase();
+// replace it with rawCode
+

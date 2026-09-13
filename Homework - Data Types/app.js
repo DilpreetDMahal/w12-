@@ -56,14 +56,37 @@ const orderStatus = null; // not yet processed
 //    just the first letter.
 //    Log: `Customer: ${titleCustomer}`
 //
+
+
+
 // c) Clean customerEmail: trim and lowercase.
 //    Log: `Email: ${cleanEmail}`
 //
+
+
 // d) Clean discountCode: trim and uppercase.
 //    Log: `Discount code: ${cleanCode}`
 
+
 console.log("--- Task 1: Clean the Data ---");
 // your code here
+
+const cleanStore = storeName.trim().toLowerCase();
+const titleStore = cleanStore[0].toUpperCase() + cleanStore.slice(1);
+console.log(`Store: ${titleStore}`);
+
+const cleanCustomer = customerName.trim().toLowerCase();
+const titleCustomer = cleanCustomer[0].toUpperCase() + cleanCustomer.slice(1);
+console.log(`Customer: ${titleCustomer}`);
+
+const cleanEmail = customerEmail.trim().toLowerCase();
+const titleEmail = cleanEmail[0].toUpperCase() + cleanEmail.slice(1);
+console.log(`Email: ${titleEmail}`);
+
+const cleanDiscountCode = discountCode.trim().toLowerCase();
+const titleDiscountCode = cleanDiscountCode[0].toUpperCase() + cleanDiscountCode.slice(1);
+console.log(`Discount Code: ${titleDiscountCode}`);
+
 
 // ----------------------------------------------------------
 // TASK 2 — Convert prices to numbers
@@ -82,6 +105,19 @@ console.log("--- Task 1: Clean the Data ---");
 
 console.log("\n--- Task 2: Convert Prices ---");
 // your code here
+const price1 = parseFloat(item1Price);
+console.log(`${item1Name} price type before: ${typeof item1Price}`);
+console.log(`${item1Name} price type after: ${typeof price1}`);
+
+const price2 = parseFloat(item2Price);
+console.log(`${item2Name} price type before: ${typeof item2Price}`);
+console.log(`${item2Name} price type after: ${typeof price2}`);
+
+const price3 = parseFloat(item3Price);
+console.log(`${item3Name} price type before: ${typeof item3Price}`);
+console.log(`${item3Name} price type after: ${typeof price3}`);
+
+
 
 // ----------------------------------------------------------
 // TASK 3 — Calculate line totals
@@ -103,6 +139,20 @@ console.log("\n--- Task 2: Convert Prices ---");
 
 console.log("\n--- Task 3: Line Totals ---");
 // your code here
+const line1Total = price1 * item1Qty;
+console.log(`${item1Name} x ${item1Qty} = $${line1Total.toFixed(2)}`);
+
+const line2Total = price2 * item2Qty;
+console.log(`${item2Name} x ${item2Qty} = $${line2Total.toFixed(2)}`);
+
+const line3Total = price3 * item3Qty;
+console.log(`${item3Name} x ${item3Qty} = $${line3Total.toFixed(2)}`);
+
+const subtotal = line1Total + line2Total + line3Total;
+console.log(`Subtotal: $${subtotal.toFixed(2)}`);
+
+//item1Price was of string type so we weren't able to use it for calculation.
+
 
 // ----------------------------------------------------------
 // TASK 4 — Apply discount and tax
@@ -114,11 +164,14 @@ console.log("\n--- Task 3: Line Totals ---");
 //    Log: `Discount (10%): -$${discountAmount.toFixed(2)}`
 //    Log: `After discount: $${discountedSubtotal.toFixed(2)}`
 //
+
 // b) const taxAmount = discountedSubtotal * taxRate;
 //    const grandTotal = discountedSubtotal + taxAmount;
 //    Log: `Tax (8%): $${taxAmount.toFixed(2)}`
 //    Log: `Grand Total: $${grandTotal.toFixed(2)}`
 //
+
+
 // c) Check if the discount code is valid:
 //    const isValidCode = discountCode.trim().toUpperCase() === "SAVE10";
 //    Log: `Discount code valid: ${isValidCode}`
@@ -127,6 +180,18 @@ console.log("\n--- Task 3: Line Totals ---");
 console.log("\n--- Task 4: Discount and Tax ---");
 // your code here
 
+const discountAmount = subtotal * 0.10;
+const discountedSubtotal = subtotal - discountAmount;
+console.log(`Discount (10%): -$${discountAmount.toFixed(2)}`);
+console.log(`After discount: $${discountedSubtotal.toFixed(2)}`);
+
+const taxAmount = discountedSubtotal * taxRate;
+const grandTotal = discountedSubtotal + taxAmount;
+console.log(`Tax (8%): $${taxAmount.toFixed(2)}`);
+console.log(`Grand Total: $${grandTotal.toFixed(2)}`);
+
+const isValidCode = discountCode.trim().toUpperCase() === "SAVE10";
+console.log(`Discount code valid: ${isValidCode}`);
 // ----------------------------------------------------------
 // TASK 5 — Type checks and edge cases
 // ----------------------------------------------------------
@@ -135,12 +200,15 @@ console.log("\n--- Task 4: Discount and Tax ---");
 //    Log: `typeof line1Total: ${typeof line1Total}`
 //    Log: `typeof grandTotal: ${typeof grandTotal}`
 //
+
 // b) Check the orderStatus:
 //    Log: `orderStatus: ${orderStatus}`
 //    Log: `typeof orderStatus: ${typeof orderStatus}`
 //    Log: `Boolean(orderStatus): ${Boolean(orderStatus)}`
 //    Write a comment: what does null mean here in context?
 //
+
+
 // c) Demonstrate the coercion trap:
 //    Log: `item1Price + item2Price = ${item1Price + item2Price}`
 //    (The RAW strings, before converting — what do you get?)
@@ -148,6 +216,14 @@ console.log("\n--- Task 4: Discount and Tax ---");
 
 console.log("\n--- Task 5: Type Checks ---");
 // your code here
+console.log(`typeof line1Total: ${typeof line1Total}`);
+console.log(`typeof grandTotal: ${typeof grandTotal}`);
+
+console.log(`orderStatus: ${orderStatus}`);  // null just means that ematy valu assigned to a variable.
+console.log(`typeof orderStatus: ${typeof orderStatus}`);
+console.log(`Boolean(orderStatus): ${Boolean(orderStatus)}`);
+
+console.log(`item1Price + item2Price = ${item1Price + item2Price}`); // because both are string
 
 // ----------------------------------------------------------
 // TASK 6 — Build the receipt header
@@ -169,6 +245,21 @@ console.log("\n--- Task 5: Type Checks ---");
 // (Use the clean variables from Task 1)
 
 console.log("\n--- Task 6: Receipt Header ---");
+
+receiptHeader = `
+================================
+        ${titleStore}
+================================
+Customer: ${titleCustomer}
+Email:    ${titleEmail}
+Date:     ${orderDate}
+Code:     ${titleDiscountCode}
+================================`;
+
+console.log(receiptHeader);
+
+
+
 // your code here
 
 // ----------------------------------------------------------
@@ -197,6 +288,20 @@ console.log("\n--- Task 6: Receipt Header ---");
 console.log("\n--- Task 7: Receipt Body ---");
 // your code here
 
+const receiptBody = `
+${item1Name.padEnd(22)}x${item1Qty}    $${line1Total.toFixed(2)}
+${item2Name.padEnd(22)}x${item2Qty}    $${line2Total.toFixed(2)}
+${item3Name.padEnd(22)}x${item3Qty}    $${line3Total.toFixed(2)}
+--------------------------------
+Subtotal:              $${subtotal.toFixed(2)}
+Discount (SAVE10 10%): -$${discountAmount.toFixed(2)}
+Tax (8%):              $${taxAmount.toFixed(2)}
+--------------------------------
+TOTAL:                 $${grandTotal.toFixed(2)}
+`;
+
+console.log(receiptBody);
+
 // ----------------------------------------------------------
 // TASK 8 — Connect the dots: full receipt
 // ----------------------------------------------------------
@@ -216,6 +321,15 @@ console.log("\n--- Task 7: Receipt Body ---");
 console.log("\n--- Task 8: Full Receipt ---");
 // your code here
 
+const fullReceipt = receiptHeader + receiptBody;
+console.log(fullReceipt);
+
+// Answer 1: + operator can be used for addition for integer and float and foe
+// concatenation for strings
+
+// Answer 2: different string methods to clean string.
+
+// Answer 3: Using conditionals such as if and else.
 // ----------------------------------------------------------
 // ⭐ STRETCH GOAL — receipt stats
 // ----------------------------------------------------------
@@ -225,15 +339,26 @@ console.log("\n--- Task 8: Full Receipt ---");
 //    const totalItems = item1Qty + item2Qty + item3Qty;
 //    Log: `Total items: ${totalItems}`
 //
+const totalItems = item1Qty + item2Qty + item3Qty;
+console.log(`Total items: ${totalItems}`);
 // b) Find the most expensive item (without conditionals — just math):
 //    const highestPrice = Math.max(price1, price2, price3);
 //    Log: `Highest price: $${highestPrice.toFixed(2)}`
 //    (Math.max() is a built-in that works like an operator here)
 //
+const highestPrice = Math.max(price1, price2, price3);
+console.log(`Highest price: $${highestPrice.toFixed(2)}`);
+
 // c) Calculate the average item price:
 //    const avgPrice = (price1 + price2 + price3) / 3;
 //    Log: `Average price: $${avgPrice.toFixed(2)}`
 //
+
+const avgPrice = (price1 + price2 + price3)/ 3;
+console.log(`AveragePRice $${avgPrice}`);
 // d) Check if the customer's email domain is "pixelgadgets.com":
 //    const isInternalEmail = cleanEmail.endsWith("@pixelgadgets.com");
 //    Log: `Internal customer: ${isInternalEmail}`
+
+const isInternalEmail = cleanEmail.endsWith("@pixelgadgets.com");
+console.log(`Internal customer: ${isInternalEmail}`);
