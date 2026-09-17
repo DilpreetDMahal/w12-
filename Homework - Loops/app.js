@@ -41,7 +41,7 @@ const storeName = "QuickShop";  // storeName is consistent through the whole cod
 const budget = 100; // budget is consistent through the whole code
 const itemLimit = 30; // this is the maximum price which will not change
 const discountThreshold = 80; // this the threshold which will remain consistent
-let discountRate = 0.10; // discount rate can change
+const discountRate = 0.10; // discount rate doesn't change
 let cartTotal = 0; // cartTotal will change
 let itemsAdded = 0; // itemsAdded will change
 let itemsSkipped = 0; // itemsSkipped will change
@@ -263,23 +263,17 @@ for (let i = 1 ; i <= 6 ; i++){
     }
     
     if (currentPrice > itemLimit){
-        console.log("⛔ Item " + i + " ($" + currentPrice + ") exceeds limit of $" + itemLimit);
-        itemsSkipped ++;
         continue;
-    }else{
-        cartTotal += currentPrice;
-        itemsAdded ++;
-        console.log("✅ Item " + i + " added ($" + currentPrice + ") | Cart: $" + cartTotal)
-    }
+    };
 
     if (currentPrice < 15){
     loyaltyPoints += currentPrice  * 2;
     console.log("⭐⭐ Double points for item " + i + "! +" + (currentPrice * 2) + " pts");
-}
-else{
+    }
+    else{
     loyaltyPoints += currentPrice;
     console.log("⭐ Item " + i + " earned " + currentPrice + " pts");
-}
+   }
 }
 
 

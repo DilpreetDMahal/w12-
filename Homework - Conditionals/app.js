@@ -199,7 +199,7 @@ let englishScore = 91;
 const totalPoints = mathScore + scienceScore + englishScore;
 const subjectCount = 3;
 const average = totalPoints / subjectCount;
-console.log(`Average Score: ${Math.ceil(average)}`);
+console.log(`Average Score: ${(average)}`);
 // Log: "Average score: " + average
 //
 // Write an if / else if / else using average to assign
@@ -225,7 +225,7 @@ if (average >= 90){
 // Hint for the || condition:
 //   mathScore < 60 || scienceScore < 60 || englishScore < 60
 
-if (mathScore <= 60 || scienceScore <= 60 || englishScore <= 60){
+if (mathScore < 60 || scienceScore < 60 || englishScore < 60){
     console.log("⚠️  Warning: at least one subject needs attention.");
 }else
 {
